@@ -12,7 +12,7 @@ app.use(express.json());
 const PORT = 3000;
 
 const API_KEY = process.env.HF_API_KEY;
-console.log("TOKEN:", API_KEY);
+// console.log("TOKEN:", API_KEY);
 
 
 app.post("/generate", async (req, res) => {

@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "A dreamy pastel aesthetic bedroom",
     "A superhero landing in a dramatic pose",
     "A giant whale flying over a city",
-    "A neon-lit gaming room setup",s
+    "A neon-lit gaming room setup",
     "A fairytale princess in a glowing gown",
     "A dragon flying over a medieval village"
   ];
