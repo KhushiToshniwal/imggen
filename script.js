@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "A dreamy pastel aesthetic bedroom",
     "A superhero landing in a dramatic pose",
     "A giant whale flying over a city",
-    "A neon-lit gaming room setup",
+    "A neon-lit gaming room setup",s
     "A fairytale princess in a glowing gown",
     "A dragon flying over a medieval village"
   ];
@@ -76,39 +76,39 @@ document.addEventListener("DOMContentLoaded", () => {
                         </a>
                     </div>`;
 
- }
-  const generateimage=async(selectedmodel,imgcount,aspratio,prompttext)=>{
-   const model_url = "http://localhost:3000/generate";
-   const {width,height}= getimagedim(aspratio);
-   const imagepromises=Array.from({length:imgcount},async(_,i)=>{
- try{
-        const response=await fetch(model_url,{
-            headers: {
-				// Authorization: `Bearer ${API_KEY}`,
-				"Content-Type": "application/json",
-			},
-			method: "POST",
-			body: JSON.stringify({
-        model: selectedmodel,
-      inputs:prompttext,
-      parameters: {width,height},
-      options:{wait_for_model:true,use_cache:false},
-      })
-        });
-       if (!response.ok) {
-  const err = await response.text();
-  throw new Error(err);
-}
-        const result = await response.blob();
-        updateimagecard(i,URL.createObjectURL(result));
+ };
+ const generateimage = async (selectedmodel, imgcount, aspratio, prompttext) => {
+  const model_url = "http://localhost:3000/generate";
+  const { width, height } = getimagedim(aspratio);
+
+  for (let i = 0; i < imgcount; i++) {
+    try {
+      const response = await fetch(model_url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          model: selectedmodel,
+          inputs: prompttext,
+          parameters: { width, height },
+          options: { wait_for_model: true, use_cache: false },
+        }),
+      });
+
+      if (!response.ok) {
+        const err = await response.text();
+        throw new Error(err);
+      }
+
+      const result = await response.blob();
+      updateimagecard(i, URL.createObjectURL(result));
+
+    } catch (error) {
+      console.log("Image failed:", error);
     }
-  catch(error){
-    console.log(error);
   }
-   })
-   
-  await Promise.allSettled(imagepromises);
-  }
+};
   const createImagecards = (selectedmodel, imgcount, aspratio, prompttext) => {
   for (let i = 0; i < imgcount; i++) {
     gridgal.innerHTML += `
@@ -132,6 +132,11 @@ document.addEventListener("DOMContentLoaded", () => {
  const hamdleformsubmit=(e)=>{
     e.preventDefault();
     const selectedmodel=modelsel.value;
+    
+    if (!selectedmodel) {
+      alert("Please select a model");
+      return;
+    }
     //  console.log("Selected Model:", selectedmodel);
     const imgcount =parseInt(cnt.value)||1;
     const aspratio=rat.value||"1/1";

@@ -1,6 +1,8 @@
 import express from "express";
 import fetch from "node-fetch";
 import cors from "cors";
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
 
@@ -9,7 +11,9 @@ app.use(express.json());
 
 const PORT = 3000;
 
-const API_KEY = "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";
+const API_KEY = process.env.HF_API_KEY;
+console.log("TOKEN:", API_KEY);
+
 
 app.post("/generate", async (req, res) => {
   try {
@@ -18,9 +22,12 @@ app.post("/generate", async (req, res) => {
     if (!model || !inputs) {
       return res.status(400).json({ error: "Missing model or inputs" });
     }
-
+    console.log("MODEL:", model);
+    console.log("URL:", `https://router.huggingface.co/hf-inference/models/${model}`);
+    
     const response = await fetch(
-      `https://api-inference.huggingface.co/models/${model}`,
+  `https://router.huggingface.co/hf-inference/models/${model}`,
+
       {
         method: "POST",
         headers: {
@@ -34,7 +41,6 @@ app.post("/generate", async (req, res) => {
         }),
       }
     );
-
     if (!response.ok) {
       const err = await response.text();
       console.log(err);
