@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Image Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body class="dark-theme">
+
+<div class="container">
+
+    <!-- Header -->
+    <div class="first">
+        <div class="left">
+            <img src="OIP.webp" alt="LOGO">
+            <h1 class="h">AI Image Generator</h1>
+        </div>
+
+        <button class="right" type="button">
+            <img src="bxs-moon.svg" alt="toggle">
+        </button>
+    </div>
+
+    <!-- Main Section -->
+    <div class="second">
+
+        <form action="#" class="prompt">
+
+            <!-- Prompt Input -->
+            <div class="promptcontainer">
+               <textarea 
+                         class="promptinput" 
+                             placeholder="Describe your imagination in detail..." 
+                                 required 
+                               autofocus></textarea>
+              <button class="promptbtn" type="button">
+                    <img src="OIP (1).webp" alt="Generate Icon">
+                </button>
+               
+            </div>
+
+            <!-- Controls -->
+            <div class="third">
+
+                <div class="selectwrap">
+                    <select  class="customselect"  name="models" id="model" required>
+                        <option selected disabled>Select Model</option>
+                        <option value="stabilityai/stable-diffusion-xl-base-1.0">SDXL</option>
+  <option value="runwayml/stable-diffusion-v1-5">SD v1.5</option>
+  <option value="stabilityai/stable-diffusion-2-1">SD 2.1</option>
+                    </select>
+                </div>
+                   <div class="selectwrap">
+                <select class="customselect"  name="imgcount" id="imgcount1" required>
+                    <option value="" selected disabled>Select Model</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+               </div>
+                <div class="selectwrap">
+                <select  class="customselect" name="ratio" id="ratios" required>
+                    <option value="" selected disabled>Aspect Ratio</option>
+                    <option value="1/1">Square (1:1)</option>
+                    <option value="16/9">Landscape (16:9)</option>
+                    <option value="9/16">Portrait (9:16)</option>
+                </select>
+               </div>
+                <button type="submit" class="gen">
+                 <i class='bx bxs-party'></i>
+                 Generate
+                 </button>
+            </div>
+            
+            <div class="gallerygrid">
+<!--               
+                <div class="imgcard lo error">
+                    <div class="status">
+                        <div class="spinner"></div>
+                      
+                            <i class='bx bx-error'></i>
+                        
+                         <div class="stattext">
+                                <p>Generating...</p>
+                              </div>
+                    </div>
+                    <img src="imagination-concept-idea-with-human-hands-with-nature-ai_995428-8035.avif" alt="" class="resultimg">
+                    <div class="imgoverlay">
+                        <button class="down">
+                          <i class='bx bx-down-arrow-circle'></i>
+                        </button>
+                    </div>
+                </div> -->
+               
+               
+                
+            </div>
+        </form>
+
+    </div>
+
+</div>
+   <script src="script.js"></script>
+</body>
+</html>
